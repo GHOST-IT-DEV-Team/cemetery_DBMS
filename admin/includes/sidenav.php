@@ -29,7 +29,7 @@ $current_page = basename($_SERVER['PHP_SELF'], ".php");
         </li>
       <!-- Plot Management--> 
 <li class="nav-item">
-<a class="nav-link <?php echo ($current_page == 'plot') ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="plot.php">
+<a class="nav-link <?php echo ($current_page == 'plot') ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="mapping.php">
 <i class="material-symbols-rounded opacity-5">flag_2</i>
 Plot Management
 </a>
@@ -94,6 +94,14 @@ Deceased Records
             <span class="nav-link-text ms-1">Admin Account</span>
           </a>
         </li>
+<li class="nav-item">
+<a class="nav-link <?php echo ($current_page == 'profile') ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="profile.php">
+<i class="material-symbols-rounded">account_circle</i>
+Profile
+  </a>
+</li>
+
+
         <li class="nav-item">
           <a class="nav-link text-dark" href="model/logout.php">
             <i class="material-symbols-rounded opacity-5" >logout</i>
