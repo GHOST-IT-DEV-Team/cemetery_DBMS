@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $account_type = $_POST['role'];
 
     // Check if passwords match
     if($password !== $confirm_password) {
@@ -17,10 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Hash password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Check if username exists
     $check = $conn->prepare("SELECT id FROM admin WHERE username = ?");
     $check->bind_param("s", $username);
     $check->execute();
@@ -31,10 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Insert new admin
-    $sql = "INSERT INTO admin (username, password, name, email, date_added) VALUES (?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO admin (username, password, name, email, account_type, date_added) VALUES (?, ?, ?, ?, ?, NOW())";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $username, $hashed_password, $name, $email);
+    $stmt->bind_param("sssss", $username, $hashed_password, $name, $email, $account_type);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Admin added successfully']);

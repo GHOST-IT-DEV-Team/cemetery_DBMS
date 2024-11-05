@@ -299,6 +299,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+<script>
+// Check for saved dark mode preference
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    
+    // Check if user preference is stored
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // Set initial state
+    if (darkMode) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        darkModeToggle.checked = true;
+        darkModeIcon.innerHTML = 'light_mode';
+    }
+    
+    // Add toggle event listener
+    darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            localStorage.setItem('darkMode', 'true');
+            darkModeIcon.innerHTML = 'light_mode';
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            localStorage.setItem('darkMode', 'false');
+            darkModeIcon.innerHTML = 'dark_mode';
+        }
+    });
+});
+</script>
 </body>
 
 </html>

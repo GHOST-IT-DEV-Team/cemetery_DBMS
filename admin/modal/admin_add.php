@@ -22,8 +22,10 @@
                     <div class="input-group input-group-outline my-3 is-filled">
                         <select class="form-select ps-3 border border-secondary" name="role" required>
                             <option value="" disabled selected>Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="front_office">Front Office</option>
+                            <option value="cashier">Cashier</option>
                         </select>
                     </div>
                     <div class="input-group input-group-outline my-3">

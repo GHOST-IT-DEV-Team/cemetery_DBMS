@@ -15,6 +15,9 @@ $current_page = basename($_SERVER['PHP_SELF'], ".php");
     <hr class="horizontal dark mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
+      <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Reports</h6>
+        </li>
         <li class="nav-item">
           <a class="nav-link <?php echo ($current_page == 'index') ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="index.php">
             <i class="material-symbols-rounded opacity-5">dashboard</i>
@@ -42,8 +45,8 @@ Deceased Records
 
 <!-- Billing Management  -->
 
-<li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Cemetery Management</h6>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Billing Management</h6>
         </li>
 
 
