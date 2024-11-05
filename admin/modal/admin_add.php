@@ -19,7 +19,13 @@
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" name="email" required>
                     </div>
-                    
+                    <div class="input-group input-group-outline my-3 is-filled">
+                        <select class="form-select ps-3 border border-secondary" name="role" required>
+                            <option value="" disabled selected>Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
                     <div class="input-group input-group-outline my-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" name="username" required>

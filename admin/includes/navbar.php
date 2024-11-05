@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="adminuser.php">Admin</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page"></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><?php if($current_page == 'index'){echo 'Dashboard';}elseif($current_page == 'plot'){echo 'Plot Management';}elseif($current_page == 'decease'){echo 'Deceased Records';}elseif($current_page == 'soa'){echo 'SOA';}elseif($current_page == 'payment'){echo 'Payment Management';} ?></li>
           </ol>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
