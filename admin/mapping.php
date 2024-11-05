@@ -28,26 +28,47 @@
 </head>
 <body>
     <div class="container mt-5">
+        <div class="h5 moon-fade d-flex align-items-center">
+            <span class="mr-2">Mapping system</span>
+            <input type="text" class="form-control" placeholder="Search..." style="width: 200px; margin-left: 10px;">
+            <button class="btn btn-primary ml-2" style="margin-top: 13px;">Search</button>
+        </div>
+        <svg id="map" width="1110" height="400" style="border: 1px solid black;">
+            <image href="images/mappings.jpg" x="0" y="0" width="1110" height="450" />
+            <?php
+            // Fetch data from the database
+            $query = "SELECT name, details, position_x AS x_position, position_y AS y_position, width, height FROM plots";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Output SVG boxes dynamically
+                    echo '<rect class="box" data-name="' . htmlspecialchars($row['name']) . '" data-details="' . htmlspecialchars($row['details']) . '" x="' . $row['x_position'] . '" y="' . $row['y_position'] . '" width="' . $row['width'] . '" height="' . $row['height'] . '"></rect>';
+                }
+            } else {
+                echo "No data found.";
+            }
+            ?>
+
         <div class="h5 moon-fade">Mapping system</div>
         <div class="d-flex justify-content-end mt-4">
         </div>   
         <svg id="map" width="1110" height="400" style="border: 1px solid black;">
-            <image href="images/map.jpg" x="0" y="0" width="1110" height="450" />
+            <image href="../images/1.jfif" x="0" y="0" width="1110" height="450" />
             <!-- Example boxes -->
-            <rect class="box" x="28" y="120" width="15" height="15" data-name="slot 1" data-details="<br> name: Adonis"></rect>
-            <rect class="box" x="27" y="140" width="15" height="15" data-name="slot 2" data-details="<br> name: xynn"></rect>
-            <rect class="box" x="26" y="160" width="15" height="15" data-name="slot 3" data-details="<br> name: kyla"></rect>
-            <rect class="box" x="25" y="180" width="15" height="15" data-name="slot 4" data-details="<br> name: lou"></rect>
+            <rect class="box" x="28" y="120" width="10" height="10" data-name="slot 1" data-details="<br> name: Adonis"></rect>
+            <rect class="box" x="27" y="140" width="10" height="10" data-name="slot 2" data-details="<br> name: xynn"></rect>
+            <rect class="box" x="26" y="160" width="10" height="10" data-name="slot 3" data-details="<br> name: kyla"></rect>
+            <rect class="box" x="25" y="180" width="10" height="10" data-name="slot 4" data-details="<br> name: lou"></rect>
 
-            <rect class="box" x="50" y="122" width="15" height="15" data-name="slot 5" data-details="<br> name: test1"></rect>
-            <rect class="box" x="49" y="140" width="15" height="15" data-name="slot 6" data-details="<br> name: test2"></rect>
-            <rect class="box" x="48" y="160" width="15" height="15" data-name="slot 7" data-details="<br> name: test3"></rect>
-            <rect class="box" x="47" y="180" width="15" height="15" data-name="slot 8" data-details="<br> name: test4"></rect>
+            <rect class="box" x="50" y="122" width="10" height="10" data-name="slot 5" data-details="<br> name: test1"></rect>
+            <rect class="box" x="49" y="140" width="10" height="10" data-name="slot 6" data-details="<br> name: test2"></rect>
+            <rect class="box" x="48" y="160" width="10" height="10" data-name="slot 7" data-details="<br> name: test3"></rect>
+            <rect class="box" x="47" y="180" width="10" height="10" data-name="slot 8" data-details="<br> name: test4"></rect>
 
-            <rect class="box" x="72" y="123" width="15" height="15" data-name="slot 9" data-details="<br> name: test5"></rect>
-            <rect class="box" x="71" y="141" width="15" height="15" data-name="slot 10" data-details="<br> name: test6"></rect>
-            <rect class="box" x="69" y="160" width="15" height="15" data-name="slot 11" data-details="<br> name: test7"></rect>
-            <rect class="box" x="69" y="180" width="15" height="15" data-name="slot 12" data-details="<br> name: test8"></rect>
+            <rect class="box" x="72" y="123" width="10" height="10" data-name="slot 9" data-details="<br> name: test5"></rect>
+            <rect class="box" x="71" y="141" width="10" height="10" data-name="slot 10" data-details="<br> name: test6"></rect>
+            <rect class="box" x="69" y="160" width="10" height="10" data-name="slot 11" data-details="<br> name: test7"></rect>
+            <rect class="box" x="69" y="180" width="10" height="10" data-name="slot 12" data-details="<br> name: test8"></rect>
         </svg>
 
         <div id="info" class="mt-4">
@@ -73,4 +94,5 @@
         </script>
     </div>
 </body>
-</html> 
+</html>
+
