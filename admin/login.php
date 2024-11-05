@@ -1,6 +1,3 @@
-<?php
-// admin/login.php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,12 +65,12 @@
                             <form action="model/login.php" method="post">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="username">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required />
+                                    <input type="text" id="username"  name="username" class="form-control" placeholder="Enter your username" required />
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required />
+                                    <input type="password" id="password" name="password"    class="form-control" placeholder="Enter your password" required />
                                 </div>
                                 <div class="text-center pt-1 mb-4">
                                     <button type="submit" class="btn btn-primary btn-block">Log In</button>
