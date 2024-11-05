@@ -74,19 +74,35 @@
                                 $query = $conn->query($sql);
                                 while($row = $query->fetch_assoc()){
                                     echo "<tr>
-                                        <td>{$row['id']}</td>
-                                        <td>{$row['username']}</td>
-                                        <td>{$row['name']}</td>
-                                        <td>{$row['email']}</td>
-                                        <td>{$row['date_added']}</td>
-                                        <td class='dropdown'>
-                                            <button class='btn btn-link text-secondary mb-0' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                                <span class='material-symbols-rounded'>more_vert</span>
-                                            </button>
-                                            <ul class='dropdown-menu'>
-                                                <li><a class='dropdown-item' href='#' data-bs-toggle='modal' data-bs-target='#addAdminModal'>Edit</a></li>
-                                                <li><a class='dropdown-item' href='#'>Delete</a></li>
-                                            </ul>
+                                        <td>
+                                            <div class='d-flex px-2 py-1'>
+                                                <div class='d-flex flex-column justify-content-center'>
+                                                    <h6 class='mb-0 text-sm'>{$row['id']}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class='text-xs font-weight-bold mb-0'>{$row['username']}</p>
+                                        </td>
+                                        <td>
+                                            <p class='text-xs font-weight-bold mb-0'>{$row['name']}</p>
+                                        </td>
+                                        <td>
+                                            <p class='text-xs font-weight-bold mb-0'>{$row['email']}</p>
+                                        </td>
+                                        <td>
+                                            <span class='text-secondary text-xs font-weight-bold'>{$row['date_added']}</span>
+                                        </td>
+                                        <td class='align-middle'>
+                                            <div class='dropdown'>
+                                                <button class='btn btn-link text-secondary mb-0' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                                    <span class='material-symbols-rounded'>more_vert</span>
+                                                </button>
+                                                <ul class='dropdown-menu'>
+                                                    <li><a class='dropdown-item text-secondary font-weight-normal text-xs' data-bs-toggle='modal' data-bs-target='#addAdminModal'>Edit</a></li>
+                                                    <li><a class='dropdown-item text-secondary font-weight-normal text-xs' href='#'>Delete</a></li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>";
                                 }

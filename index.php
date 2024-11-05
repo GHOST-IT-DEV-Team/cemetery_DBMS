@@ -1,11 +1,8 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navbar.php'; ?>
 
-<<<<<<< Updated upstream
 <div class="container">
 <div class="main-content">
-    <h1>Welcome to the Home Page</h1>
-=======
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-md-4">
@@ -14,12 +11,15 @@
                  <div class="d-flex flex-row mb-3 text-center">
                     <div class="col-md-12">
                         <h2>Puerto Princesa Memorial Park</h2>  
+
+                        <h5>Puerto Princesa Memorial Park</h5>  
                         <p>Cemetery Database Management System</p>
                     </div>
                  </div>
                 </div>
             </section>
         </div>
+        
         <div class="col-md-8">
             <section class="section">
                 <div class="container">
@@ -46,15 +46,15 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+                            <h1>Welcome to the Home Page</h1>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
->>>>>>> Stashed changes
 </div>
-
 </div>
 
 <?php include 'includes/footer.php'; ?>
