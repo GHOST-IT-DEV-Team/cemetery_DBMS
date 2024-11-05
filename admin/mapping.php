@@ -28,6 +28,27 @@
 </head>
 <body>
     <div class="container mt-5">
+        <div class="h5 moon-fade d-flex align-items-center">
+            <span class="mr-2">Mapping system</span>
+            <input type="text" class="form-control" placeholder="Search..." style="width: 200px; margin-left: 10px;">
+            <button class="btn btn-primary ml-2" style="margin-top: 13px;">Search</button>
+        </div>
+        <svg id="map" width="1110" height="400" style="border: 1px solid black;">
+            <image href="images/mappings.jpg" x="0" y="0" width="1110" height="450" />
+            <?php
+            // Fetch data from the database
+            $query = "SELECT name, details, position_x AS x_position, position_y AS y_position, width, height FROM plots";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Output SVG boxes dynamically
+                    echo '<rect class="box" data-name="' . htmlspecialchars($row['name']) . '" data-details="' . htmlspecialchars($row['details']) . '" x="' . $row['x_position'] . '" y="' . $row['y_position'] . '" width="' . $row['width'] . '" height="' . $row['height'] . '"></rect>';
+                }
+            } else {
+                echo "No data found.";
+            }
+            ?>
+
         <div class="h5 moon-fade">Mapping system</div>
         <div class="d-flex justify-content-end mt-4">
         </div>   
@@ -73,4 +94,5 @@
         </script>
     </div>
 </body>
-</html> 
+</html>
+
