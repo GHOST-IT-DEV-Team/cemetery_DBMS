@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/fonts/material-symbols.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <title><?= $title ?></title>
+    <title>PPMP Portal</title>
 </head>
 <body>
  

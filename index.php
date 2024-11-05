@@ -23,39 +23,46 @@
         <div class="col-md-8">
             <section class="section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                        <div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/test.jpg" class="d-block w-100" alt="...">
+                   <div id="carouselExampleDark" class="carousel slide" style="height: 50vh;">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="resource/img/1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="resource/img/2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="resource/img/3.jpg" class="d-block w-100 h-100 object-fit-cover" alt="...">
+        </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/2.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="images/3.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </div>
 
-                            <h1>Welcome to the Home Page</h1>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
     </div>
 </div>
 </div>
+<style>
+    #carouselExampleDark {
+    height: 400px; 
+}
 
+#carouselExampleDark .carousel-inner,
+#carouselExampleDark .carousel-item {
+    height: 100%;
+}
+
+#carouselExampleDark img {
+    object-fit: cover;
+    height: 100%;
+}
+</style>
 <?php include 'includes/footer.php'; ?>
 <?php include 'includes/script.php'; ?>
