@@ -1,6 +1,8 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navbar.php'; ?>
 
+<div class="container">
+<div class="main-content">
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-md-4">
@@ -8,6 +10,8 @@
                 <div class="container-fluid py-5 shadow ms-4" style="height: 100vh;">
                  <div class="d-flex flex-row mb-3 text-center">
                     <div class="col-md-12">
+                        <h2>Puerto Princesa Memorial Park</h2>  
+
                         <h5>Puerto Princesa Memorial Park</h5>  
                         <p>Cemetery Database Management System</p>
                     </div>
@@ -38,6 +42,7 @@
         <span class="carousel-control-next-icon"></span>
     </button>
 </div>
+
                 </div>
             </section>
         </div>
