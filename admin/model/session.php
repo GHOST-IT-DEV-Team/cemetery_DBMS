@@ -7,7 +7,7 @@ include_once 'model/conn.php';
 
 // Basic session check
 if(!isset($_SESSION['admin']) || trim($_SESSION['admin']) == ''){
-    header('location: ../index.php');
+    header('location:../admin/login.php');
     exit();
 }
 
