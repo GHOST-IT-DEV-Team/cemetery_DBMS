@@ -84,7 +84,7 @@
                 <script>
                     const plotData = [
                         <?php
-                        $sql = "SELECT * FROM plot ORDER BY id";
+                        $sql = "SELECT * FROM plot ORDER BY details";
                         $query = $conn->query($sql);
                         while($row = $query->fetch_assoc()){
                             echo "{id: " . $row['id'] . ", status: '" . strtolower($row['status']) . "'},";

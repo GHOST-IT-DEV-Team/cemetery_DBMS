@@ -3,14 +3,6 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/sidenav.php'; ?>
 <?php include 'includes/navbar.php'; ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Mapping Page</title>
     <style>
          .box {
             fill: lightblue;
@@ -25,44 +17,48 @@
             stroke-width: 3;
         }
     </style>
-</head>
-<body>
     <div class="container mt-5">
-        <div class="h5 moon-fade">Mapping system</div>
-        <div class="d-flex justify-content-end mt-4">
-        </div>   
+        <div class="h5 moon-fade d-flex align-items-center">
+            <span class="mr-2">Mapping system</span>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." style="width: 200px; margin-left: 10px;">
+            <button id="searchButton" class="btn btn-primary ml-2" style="margin-top: 13px;">Search</button>
+        </div>
         <svg id="map" width="1110" height="400" style="border: 1px solid black;">
-            <image href="images/map.jpg" x="0" y="0" width="1110" height="450" />
-            <!-- Example boxes -->
-            <rect class="box" x="28" y="120" width="15" height="15" data-name="slot 1" data-details="<br> name: Adonis"></rect>
-            <rect class="box" x="27" y="140" width="15" height="15" data-name="slot 2" data-details="<br> name: xynn"></rect>
-            <rect class="box" x="26" y="160" width="15" height="15" data-name="slot 3" data-details="<br> name: kyla"></rect>
-            <rect class="box" x="25" y="180" width="15" height="15" data-name="slot 4" data-details="<br> name: lou"></rect>
-
-            <rect class="box" x="50" y="122" width="15" height="15" data-name="slot 5" data-details="<br> name: test1"></rect>
-            <rect class="box" x="49" y="140" width="15" height="15" data-name="slot 6" data-details="<br> name: test2"></rect>
-            <rect class="box" x="48" y="160" width="15" height="15" data-name="slot 7" data-details="<br> name: test3"></rect>
-            <rect class="box" x="47" y="180" width="15" height="15" data-name="slot 8" data-details="<br> name: test4"></rect>
-
-            <rect class="box" x="72" y="123" width="15" height="15" data-name="slot 9" data-details="<br> name: test5"></rect>
-            <rect class="box" x="71" y="141" width="15" height="15" data-name="slot 10" data-details="<br> name: test6"></rect>
-            <rect class="box" x="69" y="160" width="15" height="15" data-name="slot 11" data-details="<br> name: test7"></rect>
-            <rect class="box" x="69" y="180" width="15" height="15" data-name="slot 12" data-details="<br> name: test8"></rect>
+            <image href="images/mappings.jpg" x="0" y="0" width="1110" height="450" />
+            <?php
+            // Fetch data from the database
+            $query = "SELECT box_id, name, details, position_x AS x_position, position_y AS y_position, width, height FROM plots";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Output SVG boxes dynamically with box_id
+                    echo '<rect class="box" 
+                        data-box-id="' . $row['box_id'] . '" 
+                        data-name="' . htmlspecialchars($row['name']) . '" 
+                        data-details="' . htmlspecialchars($row['details']) . '" 
+                        x="' . $row['x_position'] . '" 
+                        y="' . $row['y_position'] . '" 
+                        width="' . $row['width'] . '" 
+                        height="' . $row['height'] . '">
+                    </rect>';
+                }
+            } else {
+                echo "No data found.";
+            }
+            ?>
         </svg>
 
         <div id="info" class="mt-4">
             <h2>Details</h2>
-            <p id="detailsText">Click on a slot to see details.</p>
+            <p id="detailsText">search name to see details</details>.</p>
         </div>
 
         <?php include 'includes/footer.php'; ?>
-        <?php include 'includes/script.php'; ?>
-        
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
-            // JavaScript to handle box clicks only
+            // Updated JavaScript to handle box clicks without showing box_id
             document.querySelectorAll('.box').forEach(box => {
                 box.addEventListener('click', function() {
                     const name = this.getAttribute('data-name');
@@ -70,7 +66,40 @@
                     document.getElementById('detailsText').innerHTML = `<strong>${name}</strong>: ${details}`;
                 });
             });
+            document.getElementById('searchButton').addEventListener('click', async function() {
+                const searchQuery = document.getElementById('searchInput').value.trim();
+                if (searchQuery) {
+                    try {
+                        const response = await fetch(`search.php?query=${encodeURIComponent(searchQuery)}`);
+                        const data = await response.json();
+                        document.querySelectorAll('.box').forEach(box => {
+                            box.style.fill = 'lightblue';
+                        });
+
+                        if (data.length > 0) {
+                            let matchingDetails = [];
+                            data.forEach(item => {
+                                matchingDetails.push(`<strong>${item.name}</strong>: ${item.details}`);
+                                
+                                document.querySelectorAll('.box').forEach(box => {
+                                    if (box.getAttribute('data-box-id') === item.box_id.toString()) {
+                                        box.style.fill = 'yellow';
+                                    }
+                                });
+                            });
+                            document.getElementById('detailsText').innerHTML = matchingDetails.join('<br>');
+                        } else {
+                            document.getElementById('detailsText').innerHTML = 'No results found.';
+                        }
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                        document.getElementById('detailsText').innerHTML = 'An error occurred while searching.';
+                    }
+                } else {
+                    document.getElementById('detailsText').innerHTML = 'Please enter details to search.';
+                }
+            });
         </script>
-    </div>
-</body>
-</html> 
+        <?php include 'includes/script.php'; ?>
+        
+        

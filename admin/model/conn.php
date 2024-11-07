@@ -1,12 +1,14 @@
 <?php
-if (!extension_loaded('mysqli')) {
-    dl('php_mysqli.dll'); // For Windows
-}
+$servername = "localhost";
+$username = "root"; // Your database username
+$password = ""; // Your database password
+$dbname = "loyola_memorial_park"; // Your database name
 
-$conn = new mysqli('localhost', 'root', '', 'loyola_memorial_park');
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {/////
-    error_log("Connection failed: " . $conn->connect_error);
+// Check connection
+if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
