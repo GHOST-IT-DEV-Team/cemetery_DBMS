@@ -1,14 +1,23 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Your database username
-$password = ""; // Your database password
-$dbname = "loyola_memorial_park"; // Your database name
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "loyola_memorial_park";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
+    }
+
+    // Set charset to handle special characters
+    $conn->set_charset("utf8mb4");
+    
+    // Enable error reporting
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    
+} catch (Exception $e) {
+    die("Database connection error: " . $e->getMessage());
 }
 ?>
